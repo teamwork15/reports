@@ -5,40 +5,24 @@
 
 <html>
     <head>
-        <link rel="icon" type="image/gif" href="../favicon.ico">
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-        <link rel="stylesheet" href="resources/css/style.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.lite.min.css">
-        <link rel="stylesheet" href="login.css">
-        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="resources/js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="resources/js/mdb.min.js"></script>
-
+       
+        <link rel="stylesheet" href="resources/fonts/bootstrap.min.css">
+        
 
     </head>
     <body class="navy-blue-skin">
 
-        <div class="container" style="width: 600px;height: 800px;margin-top: 100px">
-            <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 550px;">
-                <p class="text-danger">${requestScope.errMessage}</p>
+        <div class="container" style="width: 40%;height: 750px;margin-top: 100px">
 
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+
+
             <!-- Default form login -->
-            <form action = "loginServlet" class="text-center border border-light p-5" >
-                <p class="h4 mb-4">Security Cases Reporting System</p>
-
-                <p class="h4 mb-4">Sign in</p>
-
+            <form action = "loginServlet" class="text-center border border p-5" style="border-radius: 1.5em" >
+                <p class="h4 ">Security Cases Reporting System</p>
+                <p class="h4 mb-4">Login</p>
+               
                 <!-- Email -->
-                <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Name" name="name" required>
+                <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="User name" name="name" required>
 
                 <!-- Password -->
                 <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"  name="password" required>
@@ -47,10 +31,14 @@
 
                 <!-- Sign in button -->
 
-                <button class="btn btn-info btn-block my-4" type="submit" style="width: 200px; position: relative; top: 45px">Sign in</button>
+                <button class="btn btn-primary form-control mb-1" type="submit" >Sign in</button>
+                <p style="margin-right:  190px">
+                    Don't you have account?
+                    <a href="UserRegister.jsp">Sign Up </a>
+                </p>
+               
 
-                <a href="UserRegister.jsp"  class="btn btn-grey" style="width: 200px; position: relative; bottom: 30px; left: 100px">Register</a>
-
+                <p class="text-danger h3-responsive" style="font-size: 20px">${requestScope.errMessage}</p>
 
 
             </form>

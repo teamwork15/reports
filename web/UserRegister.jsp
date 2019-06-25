@@ -11,30 +11,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
 
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/fonts/bootstrap.min.css">
 
-        <link rel="stylesheet" href="resources/css/mdb.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.lite.min.css">
-        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="resources/js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="resources/js/mdb.min.js"></script>
+        
 
     </head>
     <body>
-        <div class="container" style="width: 600px;height: 1000px;margin-top: 20px">
-            <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 550px;">
-                <p class="text-danger">${requestScope.usrerr}</p>
+        <div class="container" style="width: 700px; height: 1200px; margin-top: 40px">
 
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+
+
             <!-- Default form register -->
-            <form class="text-center border border-light p-5" action="RegisterUser" method="post">
+            <form class="text-center border border p-5" style="border-radius: 1.5em" action="RegisterUser" method="post">
+                <p class="text-danger h3-responsive" style="font-size: 20px">${requestScope.usrerr}</p>
 
                 <p class="h4 mb-4">Sign up</p>
 
@@ -50,26 +39,26 @@
                     </div>
                 </div>
                 <!-- E-mail -->
-                <input type="text" name="id" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Employee/Student ID" required>
+                <input type="text" name="id" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Student ID" required>
 
                 <!-- E-mail -->
                 <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" required>
 
                 <!-- Phone number -->
-                <input type="text"   name="phone" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock" style="margin-bottom:  20px" required>
+                <input type="text"   name="phone" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" maxlength="10" minlength="10"  aria-describedby="defaultRegisterFormPhoneHelpBlock" style="margin-bottom:  20px" required>
 
                 <!-- Password -->
-                <input type="password" name="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required>
-                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4"  pattern="(?=.*\d)(?=.*[a-z]).{8,}" style="color: black">
+                <input type="password" name="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" pattern="(?=.*\d)(?=.*[a-z]).{8,}" required>
+                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4"   style="color: black">
                     <strong> At least 8 characters and 1 digit</strong>
                 </small>
                 <input type="password"  name="cpassword" id="defaultRegisterFormPassword" class="form-control" placeholder=" Confirm Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" required>
-                
+
                 <!-- Sign up button -->
-                <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
+                <button class="btn btn-primary my-4 btn-block" type="submit">Sign up</button>
                 <hr>
 
-                
+
             </form>
             <!-- Default form register -->
         </div>

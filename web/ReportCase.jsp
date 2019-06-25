@@ -16,80 +16,97 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Report Case</title>
 
-                    <script>
-                        funtion myFunction(){
-                            confirm("Report Incident");
-                        }
-                    </script>
+
 
     </head>
 
-    <jsp:include page="UserHeader.jsp">
-        <jsp:param name="title" value="Admin"/>
-    </jsp:include>
-    <main style="height: 850px">
-        <form action="CreateComplaint" method="post"  >
+    <body class="animsition">
+        <div class="page-wrapper">
+            <jsp:include page="UserHeader.jsp"/>
 
-            <div class="container text-center border border-light p-5" style="width: 700px;height: 775px;margin-top: 10px;">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 500px; margin-left: 50px">
-                    <p class="text-danger">${requestScope.repsucc}</p>
+            <div class="page-container">
+                <jsp:include page="Navbar.jsp"/>
 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="main-content">
+                    <div class="section__content section__content--p30" style="width: 75%">
+                        <div class="row">
+                            <div class="col" >
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <p class="h4 mb-4 text-center"><u>Report Case</u></p>
+                                        <div class="container" style="width: 80%">
+                                            <form action="CreateComplaint" method="post"   >
+
+
+
+
+                                                <!-- ID-->
+                                                <div class="form-row mb-1">
+                                                    <label for="inputCat">Location:</label>
+                                                    <select id="inputState" class="form-control" name="location">
+                                                        <option selected>Buruburu</option>
+                                                        <option>Mombasa</option>
+                                                        <option>Argentina</option>
+                                                        <option>Nairobi</option>
+                                                        <option>Ruwenzori</option>
+                                                        <option>Maringo</option>
+                                                        <option>Kilimo</option>
+                                                        <option>Eldoret</option>
+                                                        <option>Mama Ngina</option>
+                                                        <option>Tsavo</option>
+                                                    </select>                  
+                                                </div>
+                                                <!-- first Name -->
+                                                <div class="form-row mb-1 ">
+                                                    <label for="inputCat">Category:</label>
+                                                    <select id="inputState" class="form-control" name="cat">
+                                                        <option selected>Theft</option>
+                                                        <option>Terrorism</option>
+                                                        <option>Fire</option>
+                                                        <option>Harassment</option>
+                                                        <option>Drug abuse</option>
+                                                        <option>Other</option>
+                                                    </select>                  
+                                                </div>
+                                                <!-- second Name -->
+                                                <div class="form-row mb-1">
+
+                                                    <label>Occurrence Date:</label>
+
+                                                    <input type="date" name="occdate" id="datePickerId" class="form-control validate"  max="" required>
+                                                </div>
+                                                <div class="form-row mb-1">
+
+                                                    <label>Occurrence Time:</label>
+
+                                                    <input type="time" name="occtime" id="orangeForm-sname" class="form-control validate" required>
+                                                </div>
+
+                                                <!--Description of the feature-->
+                                                <div class="form-row mb-1" >
+                                                    <label for="inputType">Description</label>
+                                                    <textarea type="text" class="form-control" id="exampleFormControlTextarea6" name="cased" rows="5" placeholder="Description..." required></textarea>
+                                                </div>
+
+
+                                                <div class=" d-flex justify-content-center" style="position: relative; top: 20px">
+                                                    <input type="text" name="action" hidden value="add">
+                                                    <button class="btn btn-primary " type="submit"  >Report</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <p class="h4 mb-4"><strong>Case Details </strong></p>
-                <hr>
-                <!-- ID-->
-                <div class="form-row mb-4">
-                    <label>Location</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" name="location" id="orangeForm-id" class="form-control validate" required placeholder="Location">
-                </div>
-                <!-- first Name -->
-                <div class="form-row ">
-                    <label for="inputCat">Category</label>
-                    <select id="inputState" class="form-control" name="cat">
-                        <option selected>Theft</option>
-                        <option>Terrorism</option>
-                        <option>Fire</option>
-                        <option>Harassment</option>
-                        <option>Drug abuse</option>
-                        <option>Other</option>
-                    </select>                  
-                </div>
-                <!-- second Name -->
-                <div class="form-row mb-4">
-
-                    <label>Occurrence Date:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="date" name="occdate" id="datePickerId" class="form-control validate"  max="" required>
-                </div>
-                <div class="form-row mb-4">
-
-                    <label>Occurrence Time:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="time" name="occtime" id="orangeForm-sname" class="form-control validate" required>
-                </div>
-
-                <!--Description of the feature-->
-                <div class="form-row " style="margin-top: 30px">
-                    <label for="inputType">Description</label>
-                    <textarea type="text" class="form-control" id="exampleFormControlTextarea6" name="cased" rows="5" placeholder="Description..." required></textarea>
-                </div>
-
-
-                <div class="modal-footer d-flex justify-content-center" style="position: relative; top: 20px">
-                    <input type="text" name="action" hidden value="add">
-                    <button class="btn btn-blue" type="submit" onclick="myFunction()" >Report</button>
-                </div>
-
+                <jsp:include page="Footer.jsp"/>
             </div>
-        </form>
-    </main> 
-                    
 
-    <jsp:include page="Footer.jsp"/>
+        </div>
+
+    </body>
 
 </html>

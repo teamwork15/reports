@@ -11,77 +11,79 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Users</title>
-        <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="resources/css/mdb.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="resources/fonts/bootstrap.min.css rel="stylesheet">
+
     </head>
-    
-<jsp:include page="AdminHeader.jsp">
-    <jsp:param name="title" value="Dash"/>
-</jsp:include>
-    
-    <div class="container-fluid " style=" position: relative; top: 50px; height: 700px; width: 1650px">
-        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 700px; margin-left: 200px">
-            <p class="text-danger">${requestScope.delsuccess}</p>
-      
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+
+
+    <body class="animsition">
+        <div class="page-wrapper">
+            <jsp:include page="AdminHeader.jsp"/>
+
+            <div class="page-container">
+                <jsp:include page="Navbar.jsp"/>
+
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="row">
+                            <div class="col" >
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <p class="h5 mb-4 text-center">USERS</p>
+                                        <div style="width: 100%; margin: auto">
+                                            
+                                            <table class="table table-bordered">
+                                                <thead class="grey lighten-2">
+                                                    <tr>
+
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">First Name</th>
+                                                        <th scope="col">Second Name</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Phone</th>
+                                                        <th scope="col">Category</th>
+                                                        <th scope="col">Delete</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody >
+
+                                                    <c:forEach items="${userList}" var="usrlist" >
+
+                                                        <tr>
+                                                            <td>${usrlist.userId}</td>
+                                                            <td>${usrlist.fname}</td> 
+                                                            <td>${usrlist.sname}</td>
+                                                            <td>${usrlist.emailaddress}</td>
+                                                            <td>${usrlist.phone}</td>
+                                                            <td>${usrlist.userType}</td>
+
+
+                                                            <td>
+                                                                <form action="UpdateUser">
+                                                                    <input type="text" name="userid" hidden="true" value="${usrlist.userId}">
+                                                                    <input type="text" name="action" hidden="true" value="delete">
+
+
+                                                                    <input type="submit"  class="btn-sm btn-danger" value="Remove">
+                                                                </form>
+                                                            </td>
+                                                        </tr> 
+
+                                                    </c:forEach>    
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <jsp:include page="Footer.jsp"/>
+            </div>
         </div>
 
-                <table class="table table-bordered">
-                    <thead class="grey lighten-2">
-                        <tr>
-
-                            <th scope="col">#</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Second Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Delete</th>
-
-                        </tr>
-                    </thead>
-                    <tbody >
-
-                    <c:forEach items="${userList}" var="usrlist" >
-
-                        <tr>
-                             <td>${usrlist.userId}</td>
-                            <td>${usrlist.fname}</td> 
-                            <td>${usrlist.sname}</td>
-                            <td>${usrlist.emailaddress}</td>
-                            <td>${usrlist.phone}</td>
-                            <td>${usrlist.userType}</td>
-                           
-                                
-                            <td>
-                                <form action="UpdateUser">
-                                    <input type="text" name="userid" hidden="true" value="${usrlist.userId}">
-                                    <input type="text" name="action" hidden="true" value="delete">
-                                    
-                                   
-                                    <input type="submit"  class="btn-sm btn-red" value="Remove">
-                                </form>
-                            </td>
-                        </tr> 
-
-                    </c:forEach>    
-
-
-
-
-                    </tbody>
-                </table>
-
-            </div>
-       
-
-
-
-
-
-</main>
-<jsp:include page="Footer.jsp"/>
+    </body>
+</html>

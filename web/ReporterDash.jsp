@@ -8,20 +8,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-    <title>Reporter</title>
-</head>
-<body>
-<jsp:include page="UserHeader.jsp">
-            <jsp:param name="title" value="Dash"/>
-        </jsp:include>
-<main style="height: 700px">
-    
-    <jsp:include page="Profile.jsp">
-            <jsp:param name="title" value="Dash"/>
-        </jsp:include>
-</main>
-  <jsp:include page="Footer.jsp"/>
-</body>
+
+        <title>Reporter</title>
+    <body class="animsition">
+        <div class="page-wrapper">
+
+            <jsp:include page="UserHeader.jsp"/>
+
+
+            <div class="page-container">
+                <jsp:include page="Navbar.jsp"/>
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+
+                    <jsp:include page="Profile.jsp"/>
+                    </div>
+                </div>
+
+                <jsp:include page="Footer.jsp"/>
+            </div>
+        </div>
+    </body>
 
 </html>

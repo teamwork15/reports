@@ -22,26 +22,24 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LogOutServlet", urlPatterns = {"/LogOutServlet"})
 public class LogOutServlet extends HttpServlet {
 
-  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-        //create URL
-        String url ="/UserLogin.jsp";
-        //create session 
         HttpSession session = request.getSession();
+        String role = (String) session.getAttribute("role");
+        String url;
+        if (role.equals("Reporter")) {
+            //create URL
+            url = "/UserLogin.jsp";
+            //create session 
+        } else {
+            url = "/StaffLogin.jsp";
+        }
         //inalidate
         session.invalidate();
         RequestDispatcher dispatch = request.getRequestDispatcher(url);
         dispatch.forward(request, response);
-        
-        
-        
-        
-    }
 
-   
-    
+    }
 
 }

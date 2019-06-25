@@ -5,74 +5,76 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" type="image/gif" href="../favicon.ico">
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-        <link rel="stylesheet" href="resources/css/style.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.min.css">
-        <link rel="stylesheet" href="resources/css/mdb.lite.min.css">
-        <link rel="stylesheet" href="login.css">
-        <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="resources/js/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>Change Password</title>
     </head>
-    <body>
-        <form action="ChangePassword" method="post"  >
+    <body class="animsition">
+        <div class="page-wrapper">
+            <c:if test="${sessionScope.role == 'Admin'}">
+                <jsp:include page="AdminHeader.jsp"/>
+            </c:if>
+            <c:if test="${sessionScope.role == 'Officer'}">
+                <jsp:include page="OfficerHeader.jsp"/>
+            </c:if>
+            <c:if test="${sessionScope.role == 'Reporter'}">
+                <jsp:include page="UserHeader.jsp"/>
+            </c:if>
 
-            <div class="text-center">
-                <i class="far fa-address-card"></i>frame
+            <div class="page-container">
+                <jsp:include page="Navbar.jsp"/>
 
-                <a href="" data-toggle="modal" data-target="#modalRegisterForm" style="margin-left: 10px">Change Password</a>
-            </div>
-            <p>${reg}</p>
-            <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Change Password</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                                <i class="fas fa-user prefix grey-text"></i>
-                                <input type="password"  name="oldPass" id="orangeForm-id" class="form-control validate" required placeholder="Old Password">
+                <div class="main-content">
+                    <div class="section__content section__content--p30" style="width: 70%">
+                        <div class="row">
+                            <div class="col" >
+                                <div class="au-card recent-report">
+                                     <form action="ChangePassword" method="post"  >
+                                    <div class="au-card-inner">
+                                        <p class="h5 mb-4 text-center"><u>Change password</u></p>
+                                        <div class="container" style="width: 80%">
+                                           
+                                                <div class="form-row mb-1">
+                                                    <label>Old password:</label>
+                                                    <input type="password"  name="oldPass" id="orangeForm-id" class="form-control " required >
 
+                                                </div>
+                                                <div class="form-row mb-1">
+                                                    <label>New password:</label>
+                                                    <input type="password"  name="newPass" id="orangeForm-fname" class="form-control " required >
+
+                                                </div>
+                                                <div class="form-row mb-1">
+                                                    <label>Confirm password:</label>
+                                                    <input type="password"  name="confPass" id="orangeForm-sname" class="form-control " required >
+
+                                                </div>
+
+
+                                           
+
+
+                                        </div>
+                                    </div>
+                                    <div class=" d-flex justify-content-center" style="margin-top: 20px">
+
+                                        <button class="btn btn-primary" type="submit">Change</button>
+                                    </div>
+                                     </form>
+                                </div>
                             </div>
-                            <div class="md-form mb-5">
-                                <i class="fas fa-user prefix grey-text"></i>
-                                <input type="password"  name="newPass" id="orangeForm-fname" class="form-control validate" required placeholder="New Password">
-
-                            </div>
-                            <div class="md-form mb-5">
-                                <i class="fas fa-user prefix grey-text"></i>
-                                <input type="password"  name="confPass" id="orangeForm-sname" class="form-control validate" required placeholder="Confirm New Password">
-
-                            </div>
-
-
-
-
-
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-
-                            <button class="btn btn-blue-grey" type="submit">Change</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
-        </form>
 
-    </body>
+    </form>
+
+</body>
 </html>

@@ -30,27 +30,24 @@ public class SearchStudentServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             String role = (String) session.getAttribute("role");
-            ArrayList studList = null;
-            String url = null;
+            ArrayList studList ;
+            String url ;
 
             String regNo = request.getParameter("reg");
 
             studList = DatabaseWrapper.retriveStudentProfile(regNo);
             if (studList.isEmpty()) {
-                if (role.equals("Officer")) {
+               
                     url = "/SearchStudent.jsp";
-                } else {
-                    url = "/SearchStudent-Admin.jsp";
-                }
-                request.setAttribute("stuerr", "Enter correct registration number!");
+              
             } else {
 
                 request.setAttribute("student", studList);
-                if (role.equals("Officer")) {
-                    url = "/ViewStudent-Officer.jsp";
-                } else {
-                    url = "/ViewStudent-Admin.jsp";
-                }
+            
+                    url = "/ViewStudent.jsp";
+              
+                
+                
 
             }
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

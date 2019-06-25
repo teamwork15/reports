@@ -10,75 +10,69 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User view cases</title>
     <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="resources/css/mdb.min.css" rel="stylesheet">
-    <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-    <script> if ($('#results-table > tbody > tr').length === 0) {
-            $('#results-table > thead > th').css('display', 'none');
-        }</script>
+
+
 </head>
 
-<jsp:include page="UserHeader.jsp">
-    <jsp:param name="title" value="Dash"/>
-</jsp:include>
-<!--Main Layout-->
-<main>
+<body class="animsition">
+    <div class="page-wrapper">
+        <jsp:include page="UserHeader.jsp"/>
 
-    <div class="container-fluid " style="height: 100%; width: 1400px">
+        <div class="page-container">
+            <jsp:include page="Navbar.jsp"/>
 
-        <center><h3 ><strong>Your Cases</strong></h3></center>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 550px;">
-            <p class="text-danger">${requestScope.errMessage}</p>
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="row">
+                        <div class="col" >
+                            <div class="au-card recent-report">
+                                <div class="au-card-inner">
+                                    <p class="h5 mb-4 text-center"><u>CASES</u></p>
+                                    <div style="width: 100%; margin: auto">
 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+
+                                        <table class="table table-bordered" style="position: relative; top: 10px" id="results-table" >
+                                            <thead class="grey lighten-2" >
+                                                <tr >
+
+                                                    <th >case ID</th>
+                                                    <th >Category</th>
+                                                    <th >Status</th>
+                                                    <th >Report date</th>
+                                                    <th >Occurrence date</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody >
+
+                                                <c:forEach items="${cases}" var="comp" >
+
+                                                    <tr>
+                                                        <td>${comp.id}</td> 
+                                                        <td>${comp.category}</td>
+                                                        <td>${comp.status}</td>
+                                                        <td>${comp.dateReported}</td>
+
+
+                                                        <td>${comp.occDate}</td>
+
+                                                    </tr> 
+
+                                                </c:forEach>    
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <jsp:include page="Footer.jsp"/>
         </div>
-        <table class="table table-bordered" style="position: relative; top: 10px" id="results-table" >
-            <thead class="grey lighten-2" >
-                <tr >
-
-                    <th >case ID</th>
-                    <th >Category</th>
-                    <th >Status</th>
-                    <th >Report date</th>
-                    <th >Occurrence date</th>
-
-
-                </tr>
-            </thead>
-            <tbody >
-
-                <c:forEach items="${cases}" var="comp" >
-
-                    <tr>
-                        <td>${comp.id}</td> 
-                        <td>${comp.category}</td>
-                        <td>${comp.status}</td>
-                        <td>${comp.dateReported}</td>
-
-
-                        <td>${comp.occDate}</td>
-
-                    </tr> 
-
-                </c:forEach>    
-
-
-
-
-            </tbody>
-        </table>
-
     </div>
+</body>
 
-
-
-
-
-
-
-
-</main>
-<jsp:include page="Footer.jsp"/>
 

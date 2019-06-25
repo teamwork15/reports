@@ -38,19 +38,10 @@ public class ViewProfileServlet extends HttpServlet {
             UserClass usr = DatabaseWrapper.retriveUserProfile(name, role);
             request.setAttribute("user", usr);
             System.out.println(usr.getUserId());
-            
-            switch (role) {
-                case "Officer":
-                    path = "/OfficerDash.jsp";
-                    break;
-                case "Reporter":
-                    path = "/ReporterDash.jsp";
-                    break;
-                case "Admin":
-                    path = "/AdminDash.jsp";
-                    break;
+            path = "/ViewProfile.jsp"; 
+          
                 
-            }
+            
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(path);
             
             dispatcher.forward(request, response);

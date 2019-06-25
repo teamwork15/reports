@@ -1,141 +1,131 @@
-<%-- 
-    Document   : trial
-    Created on : Mar 21, 2019, 11:19:38 AM
-    Author     : luganu
---%>
+<!DOCTYPE html>
+<html lang="en">
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="au theme template">
+        <meta name="author" content="Hau Nguyen">
+        <meta name="keywords" content="au theme template">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Title Page-->
+        <title>Dashboard</title>
 
-    <link rel="stylesheet" href="resources/mycss.css">
-    <script type="text/javascript" src="resources/myjs.js"></script>
+        <!-- Fontfaces CSS-->
+        <link href="resources/css/font-face.css" rel="stylesheet" media="all">
+        <link href="resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+        <link href="resources/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+        <link href="resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+        <!-- Bootstrap CSS-->
+        <link href="resources/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
-    <link rel="stylesheet" href="resources/css/mdb.min.css">
-    <link rel="stylesheet" href="resources/css/mdb.lite.min.css">
-
-
-
-
-
-</head>
-
-<body class="fixed-sn pink-skin">
-
-    <!--Double navigation-->
-    <header style="height: 70px" class="blue-gradient">
-
-        <!-- Sidebar navigation -->
-        <div id="mySidenav" class="sidenav"  >
-            <ul class="custom-scrollbar">
-
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- Vendor CSS-->
+        <link href="resources/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
 
 
+        <!-- Main CSS-->
+        <link href="resources/css/theme.css" rel="stylesheet" media="all">
+
+    </head>
+
+    <body class="animsition">
+        <div class="page-wrapper">
 
 
-                <a href="ViewProfile"  ><small>Profile</small></a>
-
-                
-                <a href="CreateNewUser.jsp"  ><small>Add new user</small></a>
-                
-
-                <a href="ViewUsers"  ><small>View Users</small></a>
-                <a href="ViewCases?type=unallocated"  ><small>View Unallocated </small></a>
-                <a href="ViewCases?type=allocated" ><small>View allocated </small></a>
-                <a href="ViewCases?type=resolved"  ><small>View resolved </small></a>
-
-                <a href="SearchStudent-Admin.jsp"  ><small>Search student</small></a>
-
-
-
-
-            </ul>
-            <div class="sidenav-bg mask-strong"></div>
-        </div>
-
-
-        <!-- Navbar -->
-        <nav class="navbar navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav blue-gradient ">
-            <!-- SideNav slide-out button -->
-            <div class="float-left">
-                <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="button-collapse">&#9776;</span>
-            </div>
-
-            <!-- Breadcrumb-->
-            <div class="breadcrumb-dn mr-auto" >
-                <p style="position: relative; left: 10px; top: 5px ; font-size:20px " ><strong>Egerton University</strong></p>
-            </div>
-            <ul class="nav navbar-nav nav-flex-icons ml-auto">
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" style="color: greenyellow">
-                        <u>${ sessionScope.fullName }</u>
+            <!-- MENU SIDEBAR-->
+            <aside class="menu-sidebar d-none d-lg-block">
+                <div class="logo">
+                    <a href="#">
+                        <h4 style="color: lightgreen">Egerton University</h4>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a href=""  data-toggle="modal" data-target="#modalRegisterForm" >Change Password</a>
-                        <a class="dropdown-item" href="StaffLogoutServlet">Logout</a>
-
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <!-- /.Navbar -->
-    </header>
-    <!--/.Double navigation-->
-
-    <form action="ChangePassword" method="post"  >
-        <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h4 class="modal-title w-100 font-weight-bold">Change Password</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body mx-3">
-                     
-                        <div class="md-form mb-5">
-                            <i class="fas fa-user prefix grey-text"></i>
-                            <input type="password"  name="oldPass" id="orangeForm-id" class="form-control validate" required placeholder="Old Password">
-
-                        </div>
-                        <div class="md-form mb-5">
-                            <i class="fas fa-user prefix grey-text"></i>
-                            <input type="password"  name="newPass" id="orangeForm-fname" class="form-control validate" required placeholder="New Password">
-
-                        </div>
-                        <div class="md-form mb-5">
-                            <i class="fas fa-user prefix grey-text"></i>
-                            <input type="password"  name="confPass" id="orangeForm-sname" class="form-control validate" required placeholder="Confirm New Password">
-                        </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button class="btn btn-blue-grey" type="submit">Change</button>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </form>
+               
+                    <nav class="navbar-sidebar">
+                        <ul class="list-unstyled navbar__list">
+                            <li class="active has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
 
-    <!--Main Layout-->
-    <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="resources/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="resources/js/mdb.min.js"></script>
-    <script>// SideNav Button Initialization
-                    $(".button-collapse").sideNav();
-                    // SideNav Scrollbar Initialization
-                    var sideNavScrollbar = document.querySelector('.custom-scrollbar');
-                    Ps.initialize(sideNavScrollbar);</script>
+                            </li>
+
+
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-user"></i>Account</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="ViewProfile">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="ChangePassword.jsp">Change password</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-users"></i>Users</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="CreateNewUser.jsp">Add user</a>
+                                    </li>
+                                    <li>
+                                        <a href="ViewUsers">View users</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-copy"></i>Cases</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="ViewCases?type=unallocated">Unallocated</a>
+                                    </li>
+                                    <li>
+                                        <a href="ViewCases?type=allocated">Allocated</a>
+                                    </li>
+                                    <li>
+                                        <a href="ViewCases?type=resolved">Resolved</a>
+                                    </li>
+
+
+                                </ul>
+
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="SearchStudent.jsp">
+                                    <i class="fas fa-search"></i>Search student</a>
+
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-file"></i>Reports</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-circle"></i>Help</a>
+                            </li>
+                        </ul>
+                    </nav>
+                
+            </aside>
+            <!-- END MENU SIDEBAR-->
+
+
+
+
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+   
+
+
+
 </body>
 
-
+</html>
+<!-- end document-->

@@ -406,7 +406,7 @@ public class DatabaseWrapper {
     public static ArrayList viewCases(String type) throws SQLException {
 
         connection = DatabaseConnection.getConnection();
-        sqlQuery = "select * from cases where status=? ";
+        sqlQuery = "select * from cases where status= ? ";
         System.out.print(type);
         pState = connection.prepareStatement(sqlQuery);
         pState.setString(1, type);

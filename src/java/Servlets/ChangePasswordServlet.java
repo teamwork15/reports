@@ -51,7 +51,7 @@ public class ChangePasswordServlet extends HttpServlet {
 
                     break;
                 case "Officer":
-                    path = "/OfficerDash.jsp";
+                    path = "/ViewProfile";
 
                     break;
                 case "Reporter":

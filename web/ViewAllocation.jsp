@@ -6,71 +6,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Officer Dash</title>
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="resources/css/mdb.min.css" rel="stylesheet">
-</head>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Officer Dash</title>
 
-<jsp:include page="OfficerHeader.jsp">
-    <jsp:param name="title" value="Dash"/>
-</jsp:include>
-<!--Main Layout-->
-<main>
+    </head>
 
-    <div class="container-fluid " style="height: 700px; width: 1550px">
-        
-       
+    <body class="animsition">
+        <div class="page-wrapper">
+            <jsp:include page="OfficerHeader.jsp"/>
 
-                <table class="table table-bordered">
-                    <thead class="grey lighten-2">
-                        <tr>
-                            
-                            <th scope="col">case ID</th>
-                            <th scope="col">Report date</th>
-                           
-                            <th scope="col">Allocation date</th>
-                            
+            <div class="page-container">
+                <jsp:include page="Navbar.jsp"/>
 
-                        </tr>
-                    </thead>
-                    <tbody >
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="row">
+                            <div class="col" >
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <p class="h5 mb-4 text-center"><u>CASES</u></p>
+                                        <div style="width: 100%; margin: auto">
+                                            <table class="table table-bordered">
+                                                <thead class="grey lighten-2">
+                                                    <tr>
 
-                        <c:forEach items="${allocations}" var="comp" >
-
-                            <tr>
-                              <td>${comp.id}</td> 
-                              <td>${comp.dateReported}</td>
-                             
-                               <td>${comp.allocationDate}</td>
-                                <td>
-                                    <form action="RetrieveOfficerAllocation">
-                                        <input type="text" name="caseid" hidden="true" value="${comp.id}">
-                                        <input type="text" name="action" hidden="true" value="view">
-                                        <input type="submit"  class=" btn btn-sm  btn-blue" value="view">
-                                    </form>
-                                </td>
-                            </tr> 
-
-                        </c:forEach>    
+                                                        <th >case ID</th>
 
 
+                                                        <th >Allocation date</th>
 
-                      
-                    </tbody>
-                </table>
+                                                   
+                                                    </tr>
+                                                </thead>
+                                                <tbody >
 
+                                                    <c:forEach items="${allocations}" var="comp" >
+                                                   
+                                                        <tr>
+                                                            <td><a href="RetrieveOfficerAllocation?caseid=${comp.id}&action=view">${comp.id}</a></td>                         
+                                                            <td>${comp.allocationDate}</td>
+                                                            
+                                                    </tr> 
+
+                                                </c:forEach>    
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <jsp:include page="Footer.jsp"/>
             </div>
-     
-
-   
-
-    
-
-
-
-</main>
-<jsp:include page="Footer.jsp"/>
-
+        </div>
+    </body>
+</html>

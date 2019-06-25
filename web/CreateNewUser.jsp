@@ -9,73 +9,88 @@
 <html>
     <head>
 
-        <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="resources/css/mdb.min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add new user</title>
+        <link href="resources/fonts/bootstrap.min.css" rel='stylesheet' type='text/css' />
 
     </head>
+    <body class="animsition">
+        <div class="page-wrapper">
+            <jsp:include page="AdminHeader.jsp"/>
 
-    <jsp:include page="AdminHeader.jsp">
-        <jsp:param name="title" value="Admin"/>
-    </jsp:include>
-    <main style="height: 900px">
-        <form action="AddUser" method="post"  >
+            <div class="page-container">
+                <jsp:include page="Navbar.jsp"/>
 
-            <div class="container text-center border border-light p-5" style="width: 700px;height: 800px;margin-top: 30px;">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                     <p class="text-danger">${requestScope.usrerr}</p>
-                     <p class="text-success">${requestScope.usrsuccess}</p>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-               
-                <p class="h4 mb-4"><strong>User Details </strong></p>
-                <hr>
-                <!-- ID-->
-                <div class="form-row mb-4">
-                    <label>ID:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" name="id" id="orangeForm-id" class="form-control validate" required placeholder="Employee ID">
-                </div>
-                <!-- first Name -->
-                <div class="form-row mb-4">
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="row">
+                            <div class="col" >
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <div style="width: 60%; margin: auto">
+                                        <form action="AddUser" method="post">
 
-                    <label>First Name:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" name="fname" id="orangeForm-fname" class="form-control validate" required placeholder="First Name">
-                </div>
-                <!-- second Name -->
-                <div class="form-row mb-4">
+                                            <p class="h5 mb-4 text-center "><u>Add new user</u></p>
+                                            <!-- ID-->
+                                            <div class="row mb-1">
+                                                <label>Employee ID:</label>
 
-                    <label>Second Name:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" name="sname" id="orangeForm-sname" class="form-control validate" required placeholder="Second Name">
-                </div>
-                <!-- E-mail -->
-                <div class="form-row mb-4">
-                    <label>Email:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="email" name="email" id="orangeForm-sname" class="form-control validate" required placeholder="Email">
-                </div>
-                <!-- phone number -->
-                <div class="form-row mb-4">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <label>Phone:</label>
-                    <input type="text" name="phone" id="orangeForm-sname" class="form-control validate" required placeholder="Phone Number">
-                </div>
+                                                <input type="text" name="id" id="orangeForm-id" class="form-control " required >
+                                            </div>
+                                            <!-- first Name -->
+                                            <div class="row mb-1">
 
-                <hr>
-                <div class="modal-footer d-flex justify-content-center" style="position: relative; top: 20px">
-                    <button class="btn btn-blue" type="submit" >Add</button>
-                </div>
+                                                <label>First Name:</label>
 
+                                                <input type="text" name="fname" id="orangeForm-fname" class="form-control " required >
+                                            </div>
+                                            <!-- second Name -->
+                                            <div class="row mb-1">
+
+                                                <label>Second Name:</label>
+
+                                                <input type="text" name="sname" id="orangeForm-sname" class="form-control " required >
+                                            </div>
+                                            <!-- E-mail -->
+                                            <div class="row mb-1">
+                                                <label>Email:</label>
+
+                                                <input type="email" name="email" id="orangeForm-sname" class="form-control " >
+                                            </div>
+                                            <!-- phone number -->
+                                            <div class="row mb-1">
+
+                                                <label>Phone:</label>
+                                                <input type="text" name="phone" id="orangeForm-sname" class="form-control " maxlength="10" minlength="10" >
+                                            </div>
+
+
+                                            <div class=" row"  style="margin-top: 20px">
+                                                <button class="btn btn-primary form-control" type="submit"  >Add</button>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <jsp:include page="Footer.jsp"/>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </main>  
+        </div>
 
-    <jsp:include page="Footer.jsp"/>
+
+
+
+
+    </body>
+
+
 
 </html>

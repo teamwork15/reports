@@ -10,83 +10,91 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="resources/css/mdb.min.css" rel="stylesheet">
+        <link href="resources/fonts/bootstrap.min.css" rel="stylesheet">
+
+
 
     </head>
-    <body>
-        <div class="container text-center border border-light p-5" style="width: 900px;height: 920px;margin-top: 10px; color: #37474F">
-            <!-- Default form register -->
+    <body class="animsition">
+        <div class="page-wrapper">
+            <jsp:include page="AdminHeader.jsp"/>
+
+            <div class="page-container">
+                <jsp:include page="Navbar.jsp"/>
+
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="row">
+                            <div class="col" >
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
 
 
-            <p class="h4 mb-4"><strong>Case Details</strong></p>
-            <hr>
+                                        <div class="container " style="width:70%;height: 700px;">
+                                            <!-- Default form register -->
+                                            <p class="h4 mb-4 text-center "><u>Case Details</u></p>
+
+                                            <!-- Case ID -->
+                                            <div class="row">
+                                                <label class="col-label">Case ID:</label>
+
+                                                <input  name="newid"  class="form-control validate"  value="${caseDet.id}" readonly>
+
+                                            </div>
+
+                                            <!-- ID-->
+                                            <div class="row">
+                                                <label class="col-label"> Reporter ID:</label>
+
+                                                <input   class="form-control validate" value="${caseDet.reporterId}" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+
+                                            <!--location-->
+                                            <div class="col">
+                                                <label class="col-label">Location: </label>
+
+                                                <input   class="form-control validate" value="${caseDet.location}" readonly>
+                                            </div>
 
 
-            <div class="form-row mb-4">
+                                            <!--Allocation date-->
+                                            <div class="row">
+                                                <label class="col-label1">Allocation Date:</label>
 
-                <!-- Case ID -->
-                <div class="col">
-                    <label class="col-label">Case ID:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input  name="newid" style="height: 50px" class="form-control validate"  value="${caseDet.id}" readonly>
+                                                <input     class="form-control validate" value="${caseDet.allocationDate}" readonly >
+                                            </div>
+                                        </div>
 
-                </div>
+                                        <!-- second Name -->
+                                        <div class="form-row ">
 
-                <!-- ID-->
-                <div class="col">
-                    <label class="col-label"> Reporter ID:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input  style="height: 50px" class="form-control validate" value="${caseDet.reporterId}" readonly>
-                </div>
-            </div>
+                                            <div class="col">
+                                                <label class="col-label1">Case Category:</label>
 
-            <div class="form-row mb-4">
+                                                <input   class="form-control validate"  value="${caseDet.category}" readonly>
+                                            </div>
 
-                <!--location-->
-                <div class="col">
-                    <label class="col-label">Location: </label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input   style="height: 50px" class="form-control validate" value="${caseDet.location}" readonly>
-                </div>
+                                            <!-- Occurrence Date -->
+                                            <div class="col">
+                                                <label class="col-label1">Occurrence Date:</label>
 
 
-                <!--Allocation date-->
-                <div class="col">
-                    <label class="col-label1">Allocation Date:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input    style="height: 50px" class="form-control validate" value="${caseDet.allocationDate}" readonly >
-                </div>
-            </div>
+                                                <input  class="form-control validate" value="${caseDet.occDate}" readonly>
+                                            </div>
 
-            <!-- second Name -->
-            <div class="form-row mb-4">
+                                        </div>
+                                        <!-- Details -->
+                                        <div class="form-row ">
+                                            <div class="form-group purple-border">
+                                                <label  class="row-label">Details:</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea4" rows="5" cols="100"  readonly>${caseDet.details}</textarea>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>  
 
-                <div class="col">
-                    <label class="col-label1">Case Category:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input style="height: 50px"  class="form-control validate"  value="${caseDet.category}" readonly>
-                </div>
-
-                <!-- Occurrence Date -->
-                <div class="col">
-                    <label class="col-label1">Occurrence Date:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-
-                    <input style="height: 50px" class="form-control validate" value="${caseDet.occDate}" readonly>
-                </div>
-
-            </div>
-            <!-- Details -->
-            <div class="form-row mb-4">
-                <div class="form-group purple-border">
-                    <label  class="row-label">Details:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="5" cols="100"  readonly>${caseDet.details}</textarea>
-                </div>
-            </div>
-                <hr>
-        </div>  
-
-    </body>
-</html>
+                                    </body>
+                                    </html>

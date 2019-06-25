@@ -5,37 +5,54 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Officer Dash</title>
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="resources/css/mdb.min.css" rel="stylesheet">
+    <link href="resources/fonts/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
-<jsp:include page="OfficerHeader.jsp">
-    <jsp:param name="title" value="Dash"/>
-</jsp:include>
-<main>
-  <div class="container-fluid " style="height: 700px">
-      <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 700px; margin-left: 200px">
-            <p class="text-danger">${requestScope.stuerr}</p>
-      
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <c:if test="${sessionScope.role == 'Admin'}">
+            <jsp:include page="AdminHeader.jsp"/>
+        </c:if>
+        <c:if test="${sessionScope.role == 'Officer'}">
+            <jsp:include page="OfficerHeader.jsp"/>
+        </c:if>
+
+        <div class="page-container">
+            <jsp:include page="Navbar.jsp"/>
+
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="row">
+                        <div class="col" >
+                            <div class="au-card recent-report">
+                                <div class="au-card-inner">
+                                    <p class="h5 mb-4 text-center"><u>SEARCH STUDENT</u></p>
+                                    <div style="width: 100%; margin: auto">
+                                        <form class="form-inline mr-auto" style="margin-left: 150px; margin-top: 20px" action="SearchStudent" method="post">
+                                            <input class="form-control mr-sm-2" type="text" placeholder="Enter student number..." style="width: 70%;" aria-label="Search " name="reg" required="true">
+                                            <button class="btn btn-primary" type="submit">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <jsp:include page="Footer.jsp"/>
+
         </div>
-
-    <form class="form-inline mr-auto" style="margin-left: 150px" action="SearchStudent" method="post">
-        <input class="form-control mr-sm-2" type="text" placeholder="Enter student number..." style="width: 900px;" aria-label="Search " name="reg" required="true">
-  <button class="btn blue-gradient btn-rounded btn-lg my-0" type="submit">Search</button>
-</form>
-</div>
-
-</main>
-
-
-    
-<jsp:include page="Footer.jsp"/>
-
+    </div>
+</body>

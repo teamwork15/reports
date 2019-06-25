@@ -11,148 +11,145 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Details</title>
     </head>
-    <body>
-        <jsp:include page="AdminHeader.jsp">
-            <jsp:param name="title" value="case"/>
-        </jsp:include>
+    <body class="animsition">
+        <div class="page-wrapper">
+            <jsp:include page="AdminHeader.jsp"/>
 
-        <main style="height: 1500px;">
+            <div class="page-container">
+                <jsp:include page="Navbar.jsp"/>
 
-            <div class="container text-center border border-light p-5" style="width: 900px;height: 1400px;margin-top: 10px; color: #37474F">
-                <!-- Default form register -->
-
-
-                <p class="h4 mb-4"><strong>Case Details</strong></p>
-                <hr>
-
-
-                <div class="form-row mb-4">
+                <div class="main-content">
+                    <div class="section__content section__content--p30" style="width: 75%">
+                        <div class="row">
+                            <div class="col" >
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
 
 
-                    <label>Case ID:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input  name="newid" style="height: 50px" class="form-control validate"  value="${caseDet.id}" readonly>
+                                        <p class="h4 mb-4 text-center"><u>Case Details</u></p>
 
-                </div>
-                <div class="form-row mb-4"
-                     <!-- ID-->
+                                        <div class="container" style="width: 80%">
 
-                     <label > Reporter ID:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input  style="height: 50px" class="form-control validate" value="${caseDet.reporterId}" readonly>
-                </div>
+                                            <div class="form-row ">
 
 
+                                                <label>Case ID:</label>
 
-                <div class="form-row mb-4">
+                                                <input  name="newid" class="form-control "  value="${caseDet.id}" readonly>
 
-                    <!--location-->
+                                            </div>
+                                            <div class="form-row "
+                                                 <!-- ID-->
 
-                    <label>Location: </label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input   style="height: 50px" class="form-control validate" value="${caseDet.location}" readonly>
-                </div>
-
-
-                <!--Allocation date-->
-                <div class="form-row mb-4">
-                    <label>Allocated Officer:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input    style="height: 50px" class="form-control validate" value="${caseDet.officerAllocated}" readonly >
-                </div>
-                 <div class="form-row mb-4">
-                    <label>Investigation status:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input    style="height: 50px" class="form-control validate" value="${requestScope.status}" readonly >
-                </div>
+                                                 <label > Reporter ID:</label>
+                                                <input   class="form-control " value="${caseDet.reporterId}" readonly>
+                                            </div>
 
 
 
-                <!-- second Name -->
-                <div class="form-row mb-4">
+                                            <div class="form-row ">
+
+                                                <!--location-->
+
+                                                <label>Location: </label>
+                                                <input    class="form-control " value="${caseDet.location}" readonly>
+                                            </div>
 
 
-                    <label >Case Category:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input style="height: 50px"  class="form-control validate"  value="${caseDet.category}" readonly>
-                </div>
-
-                <!-- Occurrence Date -->
-                <div class="form-row mb-4">
-                    <label >Occurrence Date:</label>
-                    <i class="fas fa-user prefix grey-text"></i>
-
-                    <input style="height: 50px" class="form-control validate" value="${caseDet.occDate}" readonly>
-                </div>
+                                            <!--Allocation date-->
+                                            <div class="form-row ">
+                                                <label>Allocated Officer:</label>
+                                                <input     class="form-control validate" value="${caseDet.officerAllocated}" readonly >
+                                            </div>
+                                            <div class="form-row ">
+                                                <label>Investigation status:</label>
+                                                <input     class="form-control " value="${requestScope.status}" readonly >
+                                            </div>
 
 
-                <!-- Details -->
-                <div class="form-row mb-4">
-                    <div class="form-group purple-border">
-                        <label  class="row-label">Details:</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea4" rows="5" cols="100"  readonly>${caseDet.details}</textarea>
+
+                                            <!-- second Name -->
+                                            <div class="form-row ">
+
+
+                                                <label >Case Category:</label>
+                                                <input  class="form-control "  value="${caseDet.category}" readonly>
+                                            </div>
+
+                                            <!-- Occurrence Date -->
+                                            <div class="form-row ">
+                                                <label >Occurrence Date:</label>
+
+                                                <input  class="form-control validate" value="${caseDet.occDate}" readonly>
+                                            </div>
+
+
+                                            <!-- Details -->
+                                            <div class="form-row ">
+                                                <div class="form-group purple-border">
+                                                    <label  class="row-label">Details:</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea4" rows="5" cols="100"  readonly>${caseDet.details}</textarea>
+                                                </div>
+                                            </div>
+
+
+
+                                            <p class="text-danger" style="font-size: 15px">${requestScope.errMsg}</p>
+
+
+
+                                            <table  class="table table-bordered mb-1">
+                                                <thead >
+                                                    <tr >
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Category</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody >
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Report</td>
+
+                                                        <td>
+                                                            <a href="FileDownload?type=report&caseid=${caseDet.id}">Download</a>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+
+                                                        <td>2</td>
+                                                        <td>Statement</td>
+
+                                                        <td>
+                                                            <a href="FileDownload?type=report&caseid=${caseDet.id}">Download</a>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <form action="ProcessCase">
+                                                <button type="submit" class=" btn btn-primary " >Resolve</button>
+                                                <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
+                                            </form>
+                                            <a href="ViewCases?type=allocated"> <button type="submit" class=" btn btn-primary " >Back</button></a>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <jsp:include page="Footer.jsp"/>
                 </div>
-
-
-                <form   action="FileDownload" >
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 400px;">
-                        <p class="text-danger">${requestScope.errMsg}</p>
-                      
-
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <table  class="table table-bordered">
-                        <thead >
-                            <tr >
-                                <th scope="col">#</th>
-                                <th scope="col">Category</th>
-
-                            </tr>
-                        </thead>
-                        <tbody >
-                            <tr>
-                                <td>1</td>
-                                <td>Report</td>
-
-                                <td>
-                                    <form action="FileDownload" >
-                                        <button type="submit" class=" btn-sm btn-blue" >Download</button>
-                                        <input  type="text"  name="type" hidden="true" value="report">
-                                        <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
-                                    </form>
-                                </td>
-                            </tr>
-
-                            <tr>
-
-                                <td>2</td>
-                                <td>Statement</td>
-
-                                <td>
-                                    <form action="FileDownload" >
-                                        <input  type="text"  name="type" hidden="true" value="statement">
-                                        <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
-                                        <button type="submit" class=" btn-sm btn-primary" >Download</button>
-                                    </form>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                                    <form action="ProcessCase">
-                                        <button type="submit" class=" btn-sm btn-primary" >Resolve</button>
-                                         <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
-                                    </form>
-
-
             </div>
-        </main>
+        </div>
+    </body>
+</html>
 
 
 
-        <jsp:include page="Footer.jsp"/>
+
+
 

@@ -80,6 +80,14 @@
         <servlet-name>FileUploadServlet</servlet-name>
         <servlet-class>Servlets.FileUploadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PdfGenServlet</servlet-name>
+        <servlet-class>Servlets.PdfGenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewPdfServlet</servlet-name>
+        <servlet-class>Servlets.ViewPdfServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateComplaintServlet</servlet-name>
         <url-pattern>/CreateComplaint</url-pattern>
@@ -175,6 +183,14 @@
     <servlet-mapping>
         <servlet-name>FileUploadServlet</servlet-name>
         <url-pattern>/FileUpload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PdfGenServlet</servlet-name>
+        <url-pattern>/PdfGen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPdfServlet</servlet-name>
+        <url-pattern>/ViewPdf</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

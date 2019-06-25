@@ -60,16 +60,19 @@ public class FileUploadServlet extends HttpServlet {
         String filen = filePart.getSubmittedFileName();
         System.out.println(filen);
         System.out.println("working");
+        
         File fileUploadDirectory = new File(uploadPath);
         if (!fileUploadDirectory.exists()) {
             fileUploadDirectory.mkdirs();
         }
+        
         String type = request.getParameter("type");
         String id = request.getParameter("caseid");
       
 
-        String fileName="";
+        String fileName;
          String path = null;
+         
         ModelUpload details = new ModelUpload();
         List<ModelUpload> fileList = new ArrayList<>();
 
