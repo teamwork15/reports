@@ -37,6 +37,7 @@ public class SearchStudentServlet extends HttpServlet {
 
             studList = DatabaseWrapper.retriveStudentProfile(regNo);
             if (studList.isEmpty()) {
+                request.setAttribute("stdmsg", "Invalid registration number");
                
                     url = "/SearchStudent.jsp";
               

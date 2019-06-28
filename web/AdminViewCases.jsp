@@ -29,6 +29,14 @@
                             <div class="col" >
                                 <div class="au-card recent-report">
                                     <div class="au-card-inner">
+                                         <c:if test="${requestScope.allSuc != null}">
+                                                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 400px">
+                                                        <strong>${requestScope.allSuc}</strong> 
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                </c:if>
                                         <p class="h5 mb-4 text-center"><u>CASES</u></p>
                                         <div style="width: 100%; margin: auto">
 
@@ -39,10 +47,12 @@
                                                     <tr>
 
                                                         <th>case ID</th>
-                                                        <th >Report date</th>
-                                                        <th >Status</th>
                                                         <th >Category</th>
                                                         <th >Occurrence date</th>
+                                                        <th >Report date</th>
+                                                        <th >Status</th>
+                                                        
+                                                        
                                                    
 
                                                     </tr>
@@ -53,10 +63,12 @@
 
                                                         <tr>
                                                             <td><a href="ViewCaseDetails?caseid=${comp.id}&action=view">${comp.id}</a></td> 
+                                                            <td>${comp.category}</td>
+                                                             <td>${comp.occDate}</td>
                                                             <td>${comp.dateReported}</td>
                                                             <td>${comp.status}</td>
-                                                            <td>${comp.category}</td>
-                                                            <td>${comp.occDate}</td>
+                                                            
+                                                           
                                                             
                                                         </tr> 
 

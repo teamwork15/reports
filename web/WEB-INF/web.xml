@@ -88,6 +88,10 @@
         <servlet-name>ViewPdfServlet</servlet-name>
         <servlet-class>Servlets.ViewPdfServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FileServlet</servlet-name>
+        <servlet-class>Servlets.FileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateComplaintServlet</servlet-name>
         <url-pattern>/CreateComplaint</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>ViewPdfServlet</servlet-name>
         <url-pattern>/ViewPdf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/File</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

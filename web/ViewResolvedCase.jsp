@@ -19,7 +19,7 @@
                 <jsp:include page="Navbar.jsp"/>
 
                 <div class="main-content">
-                    <div class="section__content section__content--p30" style="width: 70%">
+                    <div class="section__content section__content--p30" style="width: 80%">
                         <div class="row">
                             <div class="col" >
                                 <div class="au-card recent-report">
@@ -96,9 +96,11 @@
                                                 </div>
                                             </div>
 
-
-
-
+                                            <form action="FileDownload" >
+                                                <button type="submit" class=" btn-sm btn-blue" >Download</button>
+                                                <input  type="text"  name="type" hidden="true" value="statement">
+                                                <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
+                                            </form>
 
                                             <table  class="table table-bordered">
                                                 <thead >
@@ -114,7 +116,11 @@
                                                         <td>Report</td>
 
                                                         <td>
-                                                            <a href="FileDownload?type=report&caseid=${caseDet.id}">Download</a>
+                                                            <form action="FileDownload" >
+                                                                <button type="submit" class=" btn-sm btn-primary" >Download</button>
+                                                                <input  type="text"  name="type" hidden="true" value="report">
+                                                                <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
+                                                            </form>
                                                         </td>
                                                     </tr>
 
@@ -124,7 +130,11 @@
                                                         <td>Statement</td>
 
                                                         <td>
-                                                            <a href="FileDownload?type=statement&caseid=${caseDet.id}">Download</a>
+                                                            <form action="FileDownload" >
+                                                                <input  type="text"  name="type" hidden="true" value="statement">
+                                                                <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
+                                                                <button type="submit" class=" btn-sm btn-primary" >Download</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
 

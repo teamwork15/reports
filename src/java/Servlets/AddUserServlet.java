@@ -44,7 +44,7 @@ public class AddUserServlet extends HttpServlet {
             String addedby = (String) session.getAttribute("name");
             
             DatabaseWrapper.CreateUser(id, fname, sname, "Officer", addedby, email, phone);
-            request.setAttribute("usrsuccess", "User created successfully");
+            request.setAttribute("usrerr", "User created successfully");
         }
             String path = "/CreateNewUser.jsp";
             RequestDispatcher dispatcher = request.getRequestDispatcher(path);

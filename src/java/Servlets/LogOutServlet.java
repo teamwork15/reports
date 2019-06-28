@@ -26,15 +26,13 @@ public class LogOutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String role = (String) session.getAttribute("role");
+        
         String url;
-        if (role.equals("Reporter")) {
-            //create URL
-            url = "/UserLogin.jsp";
+       
+    
+            url = "/Home.jsp";
             //create session 
-        } else {
-            url = "/StaffLogin.jsp";
-        }
+        
         //inalidate
         session.invalidate();
         RequestDispatcher dispatch = request.getRequestDispatcher(url);

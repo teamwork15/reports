@@ -30,6 +30,7 @@ public class RegisterUserServlet extends HttpServlet {
             String id = request.getParameter("id");
             String action = "register";
             boolean exist = DatabaseWrapper.verifyExisting(id, action);
+            boolean isStud = DatabaseWrapper.verifyExisting(id);
 
             String password = request.getParameter("password");
             String cpassword = request.getParameter("cpassword");
@@ -46,7 +47,12 @@ public class RegisterUserServlet extends HttpServlet {
                 String path = "UserRegister.jsp";
                 RequestDispatcher dispatcher = request.getRequestDispatcher(path);
                 dispatcher.forward(request, response);
-            } else {
+            }else if(isStud == false){
+                request.setAttribute("usrerr", "student does not exist");
+                String path = "UserRegister.jsp";
+                RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+                dispatcher.forward(request, response);
+            } else if(exist == false && isStud == true){
                 String fname = request.getParameter("fname");
                 String sname = request.getParameter("sname");
 

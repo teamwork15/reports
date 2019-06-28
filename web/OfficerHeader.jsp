@@ -44,8 +44,9 @@
                
                     <nav class="navbar-sidebar">
                         <ul class="list-unstyled navbar__list">
+                             <ul class="list-unstyled navbar__list">
                             <li class="active has-sub">
-                                <a class="js-arrow" href="#">
+                                <a class="js-arrow" href="OfficerDash.jsp">
                                     <i class="fas fa-tachometer-alt"></i>Dashboard</a>
 
                             </li>
@@ -76,12 +77,9 @@
 
 
                             </li>
+                            
                             <li>
-                                <a href="#">
-                                    <i class="fas fa-file"></i>Reports</a>
-                            </li>
-                            <li>
-                                <a href="#">
+                                <a href="StaffHelp.jsp">
                                     <i class="fas fa-circle"></i>Help</a>
                             </li>
                         </ul>

@@ -33,6 +33,14 @@
                         <div class="col" >
                             <div class="au-card recent-report">
                                 <div class="au-card-inner">
+                                    <c:if test="${requestScope.stdmsg != null}">
+                                        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 400px">
+                                            <strong>${requestScope.stdmsg}</strong> 
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </c:if>
                                     <p class="h5 mb-4 text-center"><u>SEARCH STUDENT</u></p>
                                     <div style="width: 100%; margin: auto">
                                         <form class="form-inline mr-auto" style="margin-left: 150px; margin-top: 20px" action="SearchStudent" method="post">

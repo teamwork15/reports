@@ -1,5 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!-- Default form login -->
 <!Doctype HTML>
 
@@ -19,7 +21,15 @@
 
             <!-- Default form login -->
             <form action = "StaffLoginServlet" class="text-center border border p-5" method="post" style="height: 430px; border-radius: 1.5em">
-                <p class="h4 mb-4">Security Cases Reporting System</p>
+                <c:if test="${requestScope.errMessage != null}">
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 400px">
+                        <strong>${requestScope.errMessage}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </c:if>
+                <p class="h4 mb-4">Security Incidents Reporting System</p>
                 <p class="h4 mb-4"> Staff Login</p>
 
 
@@ -30,7 +40,6 @@
                 <!-- Password -->
                 <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"  name="password" required>
 
-                <p class="text-danger" style="font-size: 20px">${requestScope.errMessage}</p>
 
 
                 <!-- Sign in button -->
@@ -41,6 +50,10 @@
 
             </form>
         </div>
+        <script src="resources/vendor/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script src="resources/vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
 
     </body>
 

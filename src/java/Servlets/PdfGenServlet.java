@@ -1,30 +1,39 @@
+package Servlets;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets;
+import Business.Complaint;
+import Data.DatabaseWrapper;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
-import Data.DatabaseConnection;
-import com.lowagie.text.Cell;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.Table;
-import com.lowagie.text.pdf.PdfWriter;
+
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author justus
+ * @author denis
  */
 public class PdfGenServlet extends HttpServlet {
 
@@ -37,54 +46,130 @@ public class PdfGenServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String str = "pdf";
 
-        Connection conn;
-        PreparedStatement ps ;
-        ResultSet rs;
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("stopDate");
+        
+
+        String str = "pdf";
         try {
             Document document = new Document();
             if (str.equals("pdf")) {
                 response.setContentType("application/pdf");
                 PdfWriter.getInstance(document, response.getOutputStream());
             }
-            conn = DatabaseConnection.getConnection();
-            String query = "select * from cases where occdate = ?";          //Fetching data from table
-
-            ps = conn.prepareStatement(query);                // executing query
-            ps.setString(1, "2019-05-12");
-            rs = ps.executeQuery();
+            ArrayList<Complaint> list1 = DatabaseWrapper.generateSummary("Theft", "reported", startDate, endDate);
+            ArrayList<Complaint> list2 = DatabaseWrapper.generateSummary("Theft", "resolved", startDate, endDate);
+            ArrayList<Complaint> list3 = DatabaseWrapper.generateSummary("Terrorism", "resolved", startDate, endDate);
+            ArrayList<Complaint> list4 = DatabaseWrapper.generateSummary("Terrorism", "reported", startDate, endDate);
+            ArrayList<Complaint> list5 = DatabaseWrapper.generateSummary("Fire", "reported", startDate, endDate);
+            ArrayList<Complaint> list6 = DatabaseWrapper.generateSummary("Fire", "resolved", startDate, endDate);
+            ArrayList<Complaint> list7 = DatabaseWrapper.generateSummary("other", "resolved", startDate, endDate);
+            ArrayList<Complaint> list8 = DatabaseWrapper.generateSummary("other", "reported", startDate, endDate);
 
             document.open();
-            Table t = new Table(2);
-            Cell c1 = new Cell();
-            c1.add("name");
-            t.addCell(c1);
-
+            HttpSession session = request.getSession();
+            String name = (String) session.getAttribute("fullName");
             /* new paragraph instance initialized and add function write in pdf file*/
-            document.add(new Paragraph("---------------------------------------------------------REPORT---------------------------------------------------------\n\n"));
-            document.add(new Paragraph("                              CREATED REPORT BY-BULUMA\n\n"));
-            document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------"));
-            document.addCreationDate();
+            document.add(new Paragraph("--------------------------------------------------------- MUIPS ---------------------------------------------------------\n"));
+            document.add(new Paragraph("                                                 CASE SUMMARY  from" + "  " + startDate + " to" + "  " + endDate + "\n"));
+            document.add(new Paragraph("                                                 CREATED BY: -" + name.toUpperCase() + "\n"));
+            document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------\n\n"));
+            Date date = new Date();
 
-            while (rs.next()) {
-                // fetch & writing records in pdf files
-                document.add(new Paragraph("MSG_ID ::" + rs.getString(1) + "\nTIME ::" + rs.getString(5) + "\nNAME ::" + rs.getString(2) + "\nEMAIL ::" + rs.getString(3) + "\nMESSAGE ::" + rs.getString(4) + "\n\n"));
+            //create a table
+            PdfPTable table = new PdfPTable(9);
+            table.setWidthPercentage(100);
+            Font font = FontFactory.getFont(FontFactory.TIMES_BOLD, 12);
+            PdfPCell cell = new PdfPCell(new Phrase("Location", font));
+
+            cell.setBorder(Rectangle.BOX);
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase("Theft open ", font));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase("Theft resolved", font));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase("Terrorism resolved", font));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase("Terrorism  open ", font));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase("Fire open", font));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase("Fire resolved", font));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase("Other resolved", font));
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase("Other open", font));
+            table.addCell(cell);
+
+            for (int i = 0; i < list1.size(); i++) {
+                cell.setPhrase(new Phrase(list1.get(i).getLocation()));
+                table.addCell(cell);
+
+                cell.setPhrase(new Phrase(String.valueOf(list1.get(i).getId())));
+                table.addCell(cell);
+
+                cell.setPhrase(new Phrase(String.valueOf(list2.get(i).getId())));
+                table.addCell(cell);
+
+                cell.setPhrase(new Phrase(String.valueOf(list3.get(i).getId())));
+                table.addCell(cell);
+
+                cell.setPhrase(new Phrase(String.valueOf(list4.get(i).getId())));
+                table.addCell(cell);
+                
+                cell.setPhrase(new Phrase(String.valueOf(list5.get(i).getId())));
+                table.addCell(cell);
+
+                cell.setPhrase(new Phrase(String.valueOf(list6.get(i).getId())));
+                table.addCell(cell);
+
+                cell.setPhrase(new Phrase(String.valueOf(list7.get(i).getId())));
+                table.addCell(cell);
+                
+                cell.setPhrase(new Phrase(String.valueOf(list8.get(i).getId())));
+                table.addCell(cell);
+                
+               
             }
-            document.add(new Paragraph("---------------------------------------------------------PAGE NO::" + document.getPageNumber() + "------------------------------------------------------"));
+
+            cell.setPhrase(new Phrase("Total", font));
+            // cell.setBorder(Rectangle.BOX);
+            table.addCell(cell);
+
+            cell.setPhrase(new Phrase());
+            // cell.setBorder(Rectangle.BOX);
+            table.addCell(cell);
+            cell.setPhrase(new Phrase());
+            // cell.setBorder(Rectangle.BOX);
+
+            // cell.setBorder(Rectangle.BOX);
+            table.addCell(cell);
+
+            document.add(table);
+            document.add(new Paragraph("\n"));
+
+            String date1 = date.toString();
+            document.add(new Paragraph("                                                                                                         " + date1 + "                                               "));
+            // document.add(new Paragraph("---------------------------------------------------------PAGE NO::" + document.getPageNumber() + "------------------------------------------------------"));
 
             document.close(); //document instance closed
-            conn.close();  //db connection close
-        } catch (DocumentException | IOException | SQLException de) {
+
+        } catch (DocumentException | IOException de) {
             System.err.println("document: " + de.getMessage());
 
+        } catch (SQLException ex) {
+            Logger.getLogger(PdfGenServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -39,6 +39,7 @@ public class AllocateCaseServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(AllocateCaseServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.setAttribute("allSuc", "Case has been allocated successfully");
         String path = "ViewCases?type=unallocated";
         RequestDispatcher dispatcher = request.getRequestDispatcher(path);
         dispatcher.forward(request, response);

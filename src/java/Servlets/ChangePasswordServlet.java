@@ -47,15 +47,15 @@ public class ChangePasswordServlet extends HttpServlet {
             System.out.println(role);
             switch (role) {
                 case "Admin":
-                    path = "/ViewProfile";
+                    path = "/ChangePassword.jsp";
 
                     break;
                 case "Officer":
-                    path = "/ViewProfile";
+                    path = "/ChangePassword.jsp";
 
                     break;
                 case "Reporter":
-                    path = "/ViewProfile";
+                    path = "/ChangePassword.jsp";
 
                     break;
 

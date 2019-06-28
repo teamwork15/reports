@@ -52,16 +52,18 @@ public class StaffLoginServlet extends HttpServlet {
                 case "Admin": {
 
                     session.setAttribute("name", name);
-                    session.setAttribute("fullName", fullName);
-
-                    request.getRequestDispatcher("/ViewProfile").forward(request, response);
+                      session.setAttribute("fullName", "Administrator");
+                  
+                    request.getRequestDispatcher("/AdminDash.jsp").forward(request, response);
                     break;
                 }
                 case "Officer": {
                     
                     session.setAttribute("name", name);
-                    session.setAttribute("fullName", fullName);
-                    request.getRequestDispatcher("/ViewProfile").forward(request, response);
+                      session.setAttribute("fullName", fullName);
+
+                  
+                    request.getRequestDispatcher("/OfficerDash.jsp").forward(request, response);
                     break;
                 }
                 

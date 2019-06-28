@@ -6,6 +6,8 @@
 
 <%@page import="java.sql.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +17,10 @@
         <link rel="stylesheet" href="resources/css/mdb.min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Report Case</title>
+        <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
 
 
 
@@ -33,18 +39,22 @@
                             <div class="col" >
                                 <div class="au-card recent-report">
                                     <div class="au-card-inner">
+                                        <c:if test="${requestScope.repsucc != null}">
+                                            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 300px">
+                                                <strong>${requestScope.repsucc}</strong> 
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </c:if>
                                         <p class="h4 mb-4 text-center"><u>Report Case</u></p>
                                         <div class="container" style="width: 80%">
                                             <form action="CreateComplaint" method="post"   >
-
-
-
-
                                                 <!-- ID-->
                                                 <div class="form-row mb-1">
                                                     <label for="inputCat">Location:</label>
-                                                    <select id="inputState" class="form-control" name="location">
-                                                        <option selected>Buruburu</option>
+                                                    <select id="inputState" class="form-control" name="location" required="">
+                                                        <option >Buruburu</option>
                                                         <option>Mombasa</option>
                                                         <option>Argentina</option>
                                                         <option>Nairobi</option>
@@ -59,12 +69,11 @@
                                                 <!-- first Name -->
                                                 <div class="form-row mb-1 ">
                                                     <label for="inputCat">Category:</label>
-                                                    <select id="inputState" class="form-control" name="cat">
-                                                        <option selected>Theft</option>
+                                                    <select id="inputState" class="form-control" name="cat" required>
+                                                        <option >Theft</option>
                                                         <option>Terrorism</option>
                                                         <option>Fire</option>
-                                                        <option>Harassment</option>
-                                                        <option>Drug abuse</option>
+
                                                         <option>Other</option>
                                                     </select>                  
                                                 </div>
@@ -73,7 +82,7 @@
 
                                                     <label>Occurrence Date:</label>
 
-                                                    <input type="date" name="occdate" id="datePickerId" class="form-control validate"  max="" required>
+                                                    <input type="text"  name="occdate"  id="datepicker3" class="form-control validate"  required >
                                                 </div>
                                                 <div class="form-row mb-1">
 
@@ -106,6 +115,13 @@
             </div>
 
         </div>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#datepicker3").datepicker({minDate: -20, maxDate: "D", dateFormat: "dd-mm-yy"});
+
+            });
+        </script>
 
     </body>
 

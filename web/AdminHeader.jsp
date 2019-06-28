@@ -45,7 +45,7 @@
                     <nav class="navbar-sidebar">
                         <ul class="list-unstyled navbar__list">
                             <li class="active has-sub">
-                                <a class="js-arrow" href="#">
+                                <a class="js-arrow" href="AdminDash.jsp">
                                     <i class="fas fa-tachometer-alt"></i>Dashboard</a>
 
                             </li>
@@ -55,9 +55,7 @@
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-user"></i>Account</a>
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                    <li>
-                                        <a href="ViewProfile">Profile</a>
-                                    </li>
+                                  
                                     <li>
                                         <a href="ChangePassword.jsp">Change password</a>
                                     </li>
@@ -102,11 +100,11 @@
 
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="Reports.jsp">
                                     <i class="fas fa-file"></i>Reports</a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="AdminHelp.jsp">
                                     <i class="fas fa-circle"></i>Help</a>
                             </li>
                         </ul>

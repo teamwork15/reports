@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,11 +31,11 @@ public class ViewCaseDetailsServlet extends HttpServlet {
         String path = null;
         try {
             String caseid;
-
+            HttpSession session = request.getSession();
             caseid = request.getParameter("caseid");
 
             if (caseid == null) {
-                caseid = (String) request.getAttribute("caseid");
+                caseid = (String) session.getAttribute("caseid");
             }
 
             boolean repExists = DatabaseWrapper.checkFile(caseid, "report");

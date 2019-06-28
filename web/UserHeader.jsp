@@ -44,12 +44,13 @@
             
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="ReporterDash.jsp">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            
-                        </li>
-                     
+                        
+                      <ul class="list-unstyled navbar__list">
+                            <li class="active has-sub">
+                                <a class="js-arrow" href="ReporterDash.jsp">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+
+                            </li>
                        
                        <li class="has-sub">
                             <a class="js-arrow" href="#">
@@ -75,6 +76,11 @@
                                 <i class="fas fa-copy"></i>My cases</a>
                             
                             
+                        </li>
+                         <li class="has-sub">
+                            <a class="js-arrow" href="UserHelp.jsp">
+                                <i class="fas fa-circle"></i>Help</a>
+                           
                         </li>
                            
                     </ul>

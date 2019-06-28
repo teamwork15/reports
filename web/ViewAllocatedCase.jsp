@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,6 +26,14 @@
                             <div class="col" >
                                 <div class="au-card recent-report">
                                     <div class="au-card-inner">
+                                        <c:if test="${requestScope.errResolve != null}">
+                                            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 400px">
+                                                <strong>${requestScope.errResolve}</strong> 
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </c:if>
 
 
                                         <p class="h4 mb-4 text-center"><u>Case Details</u></p>
@@ -93,7 +103,7 @@
                                             </div>
 
 
-
+                                        <form   action="FileDownload" >
                                             <p class="text-danger" style="font-size: 15px">${requestScope.errMsg}</p>
 
 
@@ -112,7 +122,11 @@
                                                         <td>Report</td>
 
                                                         <td>
-                                                            <a href="FileDownload?type=report&caseid=${caseDet.id}">Download</a>
+                                                            <form action="FileDownload" >
+                                                                <button type="submit" class=" btn-sm btn-primary" >Download</button>
+                                                                <input  type="text"  name="type" hidden="true" value="report">
+                                                                <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
+                                                            </form>
                                                         </td>
                                                     </tr>
 
@@ -122,7 +136,11 @@
                                                         <td>Statement</td>
 
                                                         <td>
-                                                            <a href="FileDownload?type=report&caseid=${caseDet.id}">Download</a>
+                                                            <form action="FileDownload" >
+                                                                <input  type="text"  name="type" hidden="true" value="statement">
+                                                                <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
+                                                                <button type="submit" class=" btn-sm btn-primary" >Download</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
 
@@ -131,8 +149,9 @@
                                             <form action="ProcessCase">
                                                 <button type="submit" class=" btn btn-primary " >Resolve</button>
                                                 <input  type="text"  name="caseid" hidden="true" value="${caseDet.id}">
+                                                <a href="ViewCases?type=allocated"> <button type="submit" class=" btn btn-primary " >Back</button></a>
+
                                             </form>
-                                            <a href="ViewCases?type=allocated"> <button type="submit" class=" btn btn-primary " >Back</button></a>
 
 
                                         </div>

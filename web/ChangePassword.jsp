@@ -32,11 +32,19 @@
                         <div class="row">
                             <div class="col" >
                                 <div class="au-card recent-report">
-                                     <form action="ChangePassword" method="post"  >
-                                    <div class="au-card-inner">
-                                        <p class="h5 mb-4 text-center"><u>Change password</u></p>
-                                        <div class="container" style="width: 80%">
-                                           
+                                    <form action="ChangePassword" method="post"  >
+                                        <div class="au-card-inner">
+                                            <c:if test="${requestScope.errpass != null}">
+                                                <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 300px">
+                                                    <strong>${requestScope.errpass}</strong> 
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </c:if>
+                                            <p class="h5 mb-4 text-center"><u>Change password</u></p>
+                                            <div class="container" style="width: 80%">
+
                                                 <div class="form-row mb-1">
                                                     <label>Old password:</label>
                                                     <input type="password"  name="oldPass" id="orangeForm-id" class="form-control " required >
@@ -44,9 +52,12 @@
                                                 </div>
                                                 <div class="form-row mb-1">
                                                     <label>New password:</label>
-                                                    <input type="password"  name="newPass" id="orangeForm-fname" class="form-control " required >
-
+                                                    <input type="password"  name="newPass" id="orangeForm-fname" class="form-control " pattern="(?=.*\d)(?=.*[a-z]).{8,}" required >
+                                                    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4"   style="color: black">
+                                                        <strong> At least 8 characters and 1 digit</strong>
+                                                    </small>
                                                 </div>
+
                                                 <div class="form-row mb-1">
                                                     <label>Confirm password:</label>
                                                     <input type="password"  name="confPass" id="orangeForm-sname" class="form-control " required >
@@ -54,16 +65,16 @@
                                                 </div>
 
 
-                                           
 
 
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" d-flex justify-content-center" style="margin-top: 20px">
+                                        <div class=" d-flex justify-content-center" style="margin-top: 20px">
 
-                                        <button class="btn btn-primary" type="submit">Change</button>
-                                    </div>
-                                     </form>
+                                            <button class="btn btn-primary" type="submit">Change</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

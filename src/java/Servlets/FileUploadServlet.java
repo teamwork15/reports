@@ -115,6 +115,7 @@ public class FileUploadServlet extends HttpServlet {
         String message = "file uploaded successfully";
         request.setAttribute("m", message);
         request.setAttribute("caseid", id);
+      
         RequestDispatcher dispatcher = request.getRequestDispatcher("/RetrieveOfficerAllocation?action=view");
         dispatcher.forward(request, response);
 

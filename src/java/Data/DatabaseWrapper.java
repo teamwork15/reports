@@ -216,15 +216,15 @@ public class DatabaseWrapper {
         ArrayList<Complaint> allList = new ArrayList();
 
         connection = DatabaseConnection.getConnection();
-        
+
         sqlQuery = "select cases.id,  cases.category,  cases.location,  cases.description,  cases.occdate,"
                 + "  cases.datereported,  cases.reporterid, "
                 + " allocation.dateallocated "
-                + "from cases inner join allocation on cases.id = allocation.caseid and allocation.officerid = ? ";
+                + "from cases inner join allocation on cases.id = allocation.caseid and allocation.officerid = ? where status = ?";
 
         pState = connection.prepareStatement(sqlQuery);
         pState.setString(1, officerID);
-       
+        pState.setString(2, "allocated");
         rSet = pState.executeQuery();
 
         while (rSet.next()) {
@@ -237,7 +237,7 @@ public class DatabaseWrapper {
             comp.setOccDate(rSet.getString("occdate"));
             comp.setDateReported(rSet.getDate("datereported"));
             comp.setReporterId(rSet.getString("reporterid"));
-            
+
             comp.setAllocationDate(rSet.getString("dateallocated"));
             System.out.println(allList);
             allList.add(comp);
@@ -615,6 +615,84 @@ public class DatabaseWrapper {
 
         System.out.println("Case successfully resolved");
 
+    }
+
+    public static boolean verifyStudent(String id) throws SQLException {
+        String query;
+        boolean x = false;
+        query = "select id from student where id=? ";
+        pState = DatabaseConnection.getConnection().prepareStatement(query);
+        pState.setString(1, id);
+        rSet = pState.executeQuery();
+        if (rSet.next()) {
+            x = true;
+        }
+
+        System.out.println("Case successfully resolved");
+
+        return x;
+
+    }
+
+    public static boolean verifyExisting(String id) throws SQLException {
+        String query;
+        boolean x = false;
+        query = "select reg from student where reg=? ";
+        pState = DatabaseConnection.getConnection().prepareStatement(query);
+        pState.setString(1, id);
+        rSet = pState.executeQuery();
+        if (rSet.next()) {
+            x = true;
+        }
+
+        System.out.println("Case successfully resolved");
+
+        return x;
+
+    }
+
+    public static ArrayList generateSummary(String type2, String status2, String start, String end) throws SQLException {
+
+        String location[] = {"Mombasa", "Argentina", "Nairobi", "Rumenzori", "Maringo", "Kilimo", "Eldoret", " Tsavo", "Buruburu", "Mama ngina"};
+        String type[] = {type2};
+
+        String status[] = {status2};
+        int x;
+        ArrayList list = new ArrayList();
+        Complaint c;
+        for (String location1 : location) {
+            for (String type1 : type) {
+                for (String status1 : status) {
+                    c = new Complaint();
+                    x = DatabaseWrapper.countCases(location1, type1, status1, start, end);
+                    c.setCategory(type1);
+                    c.setLocation(location1);
+                    c.setStatus(status1);
+                    c.setId(x);
+                    list.add(c);
+                }
+            }
+        }
+        return list;
+
+    }
+
+    private static int countCases(String location1, String type1, String status1, String start, String end) throws SQLException {
+        String query = "select count(*) from cases where location = ? "
+                + "and category =? and status = ? and datereported between ? and ?";
+        int x = 0;
+        pState = DatabaseConnection.getConnection().prepareStatement(query);
+        pState.setString(1, location1);
+        pState.setString(2, type1);
+        pState.setString(3, status1);
+        pState.setString(4, start);
+        pState.setString(5, end);
+        rSet = pState.executeQuery();
+
+        while (rSet.next()) {
+            x = rSet.getInt(1);
+        }
+        return x;
     }
 
 }

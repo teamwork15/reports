@@ -37,9 +37,10 @@
 
                                                     <th >case ID</th>
                                                     <th >Category</th>
-                                                    <th >Status</th>
+                                                  <th >Occurrence date</th>
                                                     <th >Report date</th>
-                                                    <th >Occurrence date</th>
+                                                    
+                                                      <th >Status</th>
 
 
                                                 </tr>
@@ -51,11 +52,13 @@
                                                     <tr>
                                                         <td>${comp.id}</td> 
                                                         <td>${comp.category}</td>
-                                                        <td>${comp.status}</td>
+                                                            <td>${comp.occDate}</td>
+                                                       
                                                         <td>${comp.dateReported}</td>
 
 
-                                                        <td>${comp.occDate}</td>
+                                                    
+                                                         <td>${comp.status}</td>
 
                                                     </tr> 
 

@@ -31,6 +31,7 @@
 
 
                                         <div class="container " style="width:80%;height: 700px;">
+                                            
                                             <!-- Default form register -->
                                             <p class="h4 mb-4 text-center "><u>Case Details</u></p>
 

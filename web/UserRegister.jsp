@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +15,7 @@
 
         <link rel="stylesheet" href="resources/fonts/bootstrap.min.css">
 
-        
+
 
     </head>
     <body>
@@ -23,7 +25,14 @@
 
             <!-- Default form register -->
             <form class="text-center border border p-5" style="border-radius: 1.5em" action="RegisterUser" method="post">
-                <p class="text-danger h3-responsive" style="font-size: 20px">${requestScope.usrerr}</p>
+                <c:if test="${requestScope.usrerr != null}">
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin:auto; width: 300px">
+                        <strong>${requestScope.usrerr}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </c:if>
 
                 <p class="h4 mb-4">Sign up</p>
 
@@ -31,21 +40,21 @@
 
                     <div class="col">
                         <!-- First name -->
-                        <input type="text" name="fname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name"required >
+                        <input type="text" name="fname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name" pattern="[a-zA-Z]+" required >
                     </div>
                     <div class="col">
                         <!-- Last name -->
-                        <input type="text" name="sname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name" required>
+                        <input type="text" name="sname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name" pattern="[a-zA-Z]+" required>
                     </div>
                 </div>
                 <!-- E-mail -->
                 <input type="text" name="id" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Student ID" required>
 
                 <!-- E-mail -->
-                <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" required>
+                <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
 
                 <!-- Phone number -->
-                <input type="text"   name="phone" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" maxlength="10" minlength="10"  aria-describedby="defaultRegisterFormPhoneHelpBlock" style="margin-bottom:  20px" required>
+                <input type="text"   name="phone" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" maxlength="10" minlength="10"  aria-describedby="defaultRegisterFormPhoneHelpBlock" pattern="^07\d{8}$" style=" margin-bottom:  20px" required>
 
                 <!-- Password -->
                 <input type="password" name="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" pattern="(?=.*\d)(?=.*[a-z]).{8,}" required>
@@ -62,5 +71,9 @@
             </form>
             <!-- Default form register -->
         </div>
+        <script src="resources/vendor/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script src="resources/vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
     </body>
 </html>

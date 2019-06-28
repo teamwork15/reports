@@ -31,7 +31,7 @@ public class StaffLogoutServlet extends HttpServlet {
         {
             session.invalidate(); //removes all session attributes bound to the session
             request.setAttribute("errMessage", "You have logged out successfully!");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/StaffLogin.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Home.jsp");
             requestDispatcher.forward(request, response);
             System.out.println("Logged out");
         

@@ -45,7 +45,7 @@ public class loginServlet extends HttpServlet {
 
                 if (userType.equals("Reporter")) {
 
-                    request.getRequestDispatcher("/ViewProfile").forward(request, response);
+                    request.getRequestDispatcher("/ReporterDash.jsp").forward(request, response);
 
                 }
             } else {

@@ -26,21 +26,21 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FileDownloadServlet extends HttpServlet {
 
-       private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static int BUFFER_SIZE = 1024 * 100;
-	public static final String UPLOAD_DIR = "uploads";
+    public static int BUFFER_SIZE = 1024 * 100;
+    public static final String UPLOAD_DIR = "uploads";
 
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           try {
+        try {
                this.handleRequest(request,response);
-           } catch (SQLException ex) {
-               Logger.getLogger(FileDownloadServlet.class.getName()).log(Level.SEVERE, null, ex);
-           }
-        
+        } catch (SQLException ex) {
+            Logger.getLogger(FileDownloadServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     
@@ -48,71 +48,75 @@ public class FileDownloadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+
     }
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 
 		
-		String caseId = request.getParameter("caseid");
-                String type = request.getParameter("type");
-                
-                boolean exists = DatabaseWrapper.checkFile(caseId, type);
+        String caseId = request.getParameter("caseid");
+        String type = request.getParameter("type");
+
+        boolean exists = DatabaseWrapper.checkFile(caseId, type);
                 if(exists == false){
-                    request.setAttribute("caseid", caseId);
-                    request.setAttribute("errMsg", "File not yet uploaded");
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewCaseDetails");
+            request.setAttribute("caseid", caseId);
+            request.setAttribute("errMsg", "File not yet uploaded");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewCaseDetails");
             dispatcher.forward(request, response);
-                   
+
                 }else{
-                String filePath = DatabaseWrapper.retrievePath(caseId, type);
-                System.out.println(filePath);
-  		File file = new File(filePath);
-		OutputStream outStream = null;
-		FileInputStream inputStream = null;
+            String filePath = DatabaseWrapper.retrievePath(caseId, type);
+            System.out.println(filePath);
+            File file = new File(filePath);
+            OutputStream outStream = null;
+            FileInputStream inputStream = null;
 
-		if (file.exists()) {
-
-			
-			String mimeType = "application/octet-stream";
-			response.setContentType(mimeType);
+            if (file.exists()) {
 
 			
-			String headerKey = "Content-Disposition";
-			String headerValue = String.format("attachment; filename=\"%s\"", file.getName());
-			response.setHeader(headerKey, headerValue);
+                String mimeType = "application/octet-stream";
+                response.setContentType(mimeType);
 
-			try {
+			
+                String headerKey = "Content-Disposition";
+                String headerValue = String.format("attachment; filename=\"%s\"", file.getName());
+                response.setHeader(headerKey, headerValue);
+
+                try {
 
 				
-				outStream = response.getOutputStream();
-				inputStream = new FileInputStream(file);
-				byte[] buffer = new byte[BUFFER_SIZE];
-				int bytesRead;
+                    outStream = response.getOutputStream();
+                    inputStream = new FileInputStream(file);
+                    byte[] buffer = new byte[BUFFER_SIZE];
+                    int bytesRead;
 
 				
-				while ((bytesRead = inputStream.read(buffer)) != -1) {
-					outStream.write(buffer, 0, bytesRead);
-				}				
-			} catch(IOException ioExObj) {
-				System.out.println("Exception While Performing The I/O Operation?= " + ioExObj.getMessage());
-			} finally {				
-				if (inputStream != null) {
-					inputStream.close();
-				}
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outStream.write(buffer, 0, bytesRead);
+                    }
+                } catch (IOException ioExObj) {
+                    System.out.println("Exception While Performing The I/O Operation?= " + ioExObj.getMessage());
+                } finally {
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
 
-				outStream.flush();
-				if (outStream != null) {
-					outStream.close();
-				}
-			}
-		} else {
-
-			
-			response.setContentType("text/html");
+                    outStream.flush();
+                    if (outStream != null) {
+                        outStream.close();
+                    }
+                }
+               
+            } else {
 
 			
-                }	
-		}}
+                response.setContentType("text/html");
+
+            }
+        }
+
+    }
+		
     @Override
     public String getServletInfo() {
         return "Short description";
